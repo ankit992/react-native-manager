@@ -1,5 +1,12 @@
 import firebase from 'firebase';
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER } from './types';
+import { NavigationActions } from 'react-navigation';
+import { 
+    EMAIL_CHANGED, 
+    PASSWORD_CHANGED, 
+    LOGIN_USER_SUCCESS, 
+    LOGIN_USER_FAIL, 
+    LOGIN_USER 
+} from './types';
 
 export const emailChanged = (text) => {
     return {
@@ -40,4 +47,12 @@ const loginUserSuccess = (dispatch, user) => {
         type: LOGIN_USER_SUCCESS,
         payload: user
     });
+
+    const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'EmployeeList' })
+        ]
+    });
+    dispatch(resetAction);   
 };
