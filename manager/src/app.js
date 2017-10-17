@@ -7,6 +7,7 @@ import firebase from 'firebase';
 import reducers from './reducers';
 import { FeedStack } from './Router';
 import LoginForm from './components/LoginForm';
+import AppWithNavigationState from './navigators/AppNavigator';
 
 class App extends Component {
     componentWillMount() {
@@ -25,7 +26,7 @@ class App extends Component {
         
         return (
             <Provider store={store}>
-                <FeedStack />
+                <AppWithNavigationState />
             </Provider>
         );
     }
