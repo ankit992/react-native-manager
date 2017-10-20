@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
+import { employeesFetch } from '../actions';
 
 class EmployeeList extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -10,6 +11,10 @@ class EmployeeList extends Component {
             headerRight: <Button title="Add" onPress={() => params.handleSave()} />
         };
     };
+
+    componentWillMount() {
+        this.props.employeesFetch();
+    }
 
     componentDidMount() {
       this.props.navigation.setParams({ handleSave: () => this.addDetails(this) });
@@ -40,4 +45,4 @@ const mapStatesToProps = (state) => {
     return { nav };
 };
 
-export default connect(mapStatesToProps)(EmployeeList);
+export default connect(mapStatesToProps, { employeesFetch })(EmployeeList);
