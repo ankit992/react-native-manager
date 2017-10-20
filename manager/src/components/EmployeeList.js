@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 
 class EmployeeList extends Component {
-    static navigationOptions = {
-        title: 'Products',
-        headerRight: <Button title={'Add'} />
+    static navigationOptions = ({ navigation }) => {
+        const { params = {} } = navigation.state;
+        return {
+            title: 'Employee List',
+            headerRight: <Button title="Add" onPress={() => params.handleSave()} />
+        };
     };
 
-    // componentDidMount() {
-    //   this.props.navigation.setParams({ handleSave: this.saveDetails });
-    // }
+    componentDidMount() {
+      this.props.navigation.setParams({ handleSave: this.addDetails });
+    }
 
-    // saveDetails() {
-    //     console.log('Save Details');
-    // }
+    addDetails() {
+        console.log('clicked add');
+    }
 
     render() { 
         return (
