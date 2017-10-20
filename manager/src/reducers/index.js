@@ -8,5 +8,5 @@ export default combineReducers({
     auth: AuthReducer,
     nav: NavReducer,
     employeeForm: EmployeeFormReducer,
-    employeeReducer: EmployeeReducer
+    employees: EmployeeReducer
 });
