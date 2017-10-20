@@ -5,14 +5,23 @@ import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import LoginForm from '../components/LoginForm';
 import EmployeeList from '../components/EmployeeList';
+import EmployeeCreate from '../components/EmployeeCreate';
 
 export const AppNavigator = StackNavigator({
     LoginForm: {
         screen: LoginForm,
+        navigationOptions: {
+          title: 'Login'
+        }
     },
     EmployeeList: {
         screen: EmployeeList,
-    
+    },
+    EmployeeCreate: {
+      screen: EmployeeCreate,
+      navigationOptions: {
+        title: 'Create Employee'
+      }
     }
 });
 

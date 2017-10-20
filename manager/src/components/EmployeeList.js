@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
+import { connect } from 'react-redux';
 
 class EmployeeList extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -11,11 +12,13 @@ class EmployeeList extends Component {
     };
 
     componentDidMount() {
-      this.props.navigation.setParams({ handleSave: this.addDetails });
+      this.props.navigation.setParams({ handleSave: () => this.addDetails(this) });
     }
 
-    addDetails() {
-        console.log('clicked add');
+    addDetails = (propHolder) => {
+        console.log(propHolder.props);
+        const { navigate } = this.props.navigation;
+        navigate('EmployeeCreate');        
     }
 
     render() { 
@@ -31,4 +34,10 @@ class EmployeeList extends Component {
     }
 }
 
-export default EmployeeList;
+const mapStatesToProps = (state) => {
+    const { nav } = state;
+    console.log(nav);
+    return { nav };
+};
+
+export default connect(mapStatesToProps)(EmployeeList);
