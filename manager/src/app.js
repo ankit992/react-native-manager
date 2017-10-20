@@ -5,7 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
 import reducers from './reducers';
-import { FeedStack } from './Router';
 import LoginForm from './components/LoginForm';
 import AppWithNavigationState from './navigators/AppNavigator';
 
