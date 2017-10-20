@@ -4,9 +4,12 @@ import { AppNavigator } from '../navigators/AppNavigator';
 // Start with two routes: The Main screen, with the Login screen on top.
 const firstAction = AppNavigator.router.getActionForPathAndParams('LoginForm');
 const tempNavState = AppNavigator.router.getStateForAction(firstAction);
-// const secondAction = AppNavigator.router.getActionForPathAndParams('EmployeeList');
+const secondAction = AppNavigator.router.getActionForPathAndParams('EmployeeList');
+const secondNavState = AppNavigator.router.getStateForAction(secondAction);
+
 const initialNavState = AppNavigator.router.getStateForAction(
-    tempNavState
+    tempNavState,
+    secondNavState
 );
 
 function nav(state = initialNavState, action) {

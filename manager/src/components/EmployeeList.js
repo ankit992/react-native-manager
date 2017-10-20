@@ -3,9 +3,8 @@ import { View, Text, Button } from 'react-native';
 
 class EmployeeList extends Component {
     static navigationOptions = {
-        // header: {
-        //     // right: <Button title={'Save'} />
-        // }
+        title: 'Products',
+        headerRight: <Button title={'Add'} />
     };
 
     // componentDidMount() {
