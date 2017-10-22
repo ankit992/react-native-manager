@@ -6,7 +6,7 @@ class ListItem extends Component {
 
     onRowPress() {
         console.log(this.props);
-        this.props.navigationProp.navigate('EmployeeCreate', { employee: this.props.employee });
+        this.props.navigationProp.navigate('EmployeeEdit', { employee: this.props.employee });
     }
 
     render() {

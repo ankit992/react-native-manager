@@ -6,6 +6,7 @@ import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 import LoginForm from '../components/LoginForm';
 import EmployeeList from '../components/EmployeeList';
 import EmployeeCreate from '../components/EmployeeCreate';
+import EmployeeEdit from '../components/EmployeeEdit';
 
 export const AppNavigator = StackNavigator({
     LoginForm: {
@@ -21,6 +22,12 @@ export const AppNavigator = StackNavigator({
       screen: EmployeeCreate,
       navigationOptions: {
         title: 'Create Employee'
+      }
+    },
+    EmployeeEdit: {
+      screen: EmployeeEdit,
+      navigationOptions: {
+        title: 'Edit Employee'
       }
     }
 });
