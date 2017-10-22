@@ -12,7 +12,6 @@ class EmployeeCreate extends Component {
     }
 
     render() {
-        const { employee } = this.props.navigation.state.params;
         return (
             <Card>
                 <EmployeeForm {...this.props} />
