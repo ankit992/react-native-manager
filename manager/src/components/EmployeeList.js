@@ -45,7 +45,7 @@ class EmployeeList extends Component {
     }
 
     renderRow(employee) {
-        return <ListItem employee={employee} />;
+        return <ListItem employee={employee} navigationProp={this.props.navigation} />;
     }
 
     render() { 
@@ -53,7 +53,7 @@ class EmployeeList extends Component {
             <ListView
                 enableEmptySections
                 dataSource={this.dataSource}
-                renderRow={this.renderRow} 
+                renderRow={this.renderRow.bind(this)}
             />
         );
     }

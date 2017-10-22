@@ -12,6 +12,10 @@ class EmployeeCreate extends Component {
     }
 
     render() {
+        console.log('$$$$$$$$$');
+        const { employee } = this.props.navigation.state.params;
+        console.log(employee);
+        console.log('$$$$$$$$$');        
         return (
             <Card>
                 <CardSection>
