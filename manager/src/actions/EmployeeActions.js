@@ -1,6 +1,11 @@
 import firebase from 'firebase';
 import { NavigationActions } from 'react-navigation';
-import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE, EMPLOYEES_FETCH_SUCCESS } from './types';
+import { 
+    EMPLOYEE_UPDATE, 
+    EMPLOYEE_CREATE, 
+    EMPLOYEES_FETCH_SUCCESS,
+    EMPLOYEE_SAVE_SUCCESS
+} from './types';
 
 export const employeeUpdate = ({ prop, value }) => {
     return {
@@ -39,9 +44,19 @@ export const employeesFetch = () => {
 
 export const employeeSave = ({ name, phone, shift, uid }) => {
     const { currentUser } = firebase.auth();
+    
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
             .set({ name, phone, shift })
-            .then(() => console.log('saved!'));
+            .then(() => {
+                const resetAction = NavigationActions.reset({
+                    index: 0,
+                    actions: [
+                    NavigationActions.navigate({ routeName: 'EmployeeList' })
+                    ]
+                });
+                dispatch(resetAction); 
+                dispatch({ type: EMPLOYEE_SAVE_SUCCESS });                                
+            });
     };
 };

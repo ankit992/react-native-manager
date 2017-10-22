@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import Communications from 'react-native-communications';
 import { Card, CardSection, Button } from './common';
 import EmployeeForm from './EmployeeForm';
 import { employeeUpdate, employeeSave } from '../actions';
@@ -18,6 +19,15 @@ class EmployeeEdit extends Component {
         this.props.employeeSave({ name, phone, shift, uid: this.props.navigation.state.params.employee.uid });  
     }
 
+    onTextPress() {
+        const { name, phone, shift } = this.props;
+        Communications.text(phone, `Your upcoming shift is on ${shift}`);
+    }
+
+    onFireEmployee() {
+        
+    }
+
     render() {
         return (
             <Card>
@@ -29,10 +39,16 @@ class EmployeeEdit extends Component {
                 </CardSection>
 
                 <CardSection>
-                    <Button>
-                        Delete
+                    <Button onPress={this.onTextPress.bind(this)}>
+                        Text Schedule
                     </Button>    
-                </CardSection>                
+                </CardSection> 
+
+                <CardSection>
+                    <Button onPress={this.onFireEmployee.bind(this)}>
+                        Fire Employee
+                    </Button>    
+                </CardSection>          
             </Card>
         );
     }
