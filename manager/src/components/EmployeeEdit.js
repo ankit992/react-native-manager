@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Communications from 'react-native-communications';
-import { Card, CardSection, Button } from './common';
+import { Card, CardSection, Button, Confirm } from './common';
 import EmployeeForm from './EmployeeForm';
 import { employeeUpdate, employeeSave } from '../actions';
 
 class EmployeeEdit extends Component {
+    state = { showModal: false }
     
     componentWillMount() {
         _.each(this.props.navigation.state.params.employee, (value, prop) => {
@@ -16,7 +17,9 @@ class EmployeeEdit extends Component {
 
     onButtonPress() {
         const { name, phone, shift } = this.props;
-        this.props.employeeSave({ name, phone, shift, uid: this.props.navigation.state.params.employee.uid });  
+        this.props.employeeSave(
+            { name, phone, shift, uid: this.props.navigation.state.params.employee.uid }
+        );  
     }
 
     onTextPress() {
@@ -25,7 +28,7 @@ class EmployeeEdit extends Component {
     }
 
     onFireEmployee() {
-        
+        this.setState({ showModal: !this.state.showModal });
     }
 
     render() {
@@ -48,7 +51,13 @@ class EmployeeEdit extends Component {
                     <Button onPress={this.onFireEmployee.bind(this)}>
                         Fire Employee
                     </Button>    
-                </CardSection>          
+                </CardSection>    
+                
+                <Confirm
+                    visible={this.state.showModal}
+                >
+                    Are you sure you want to delete this?     
+                </Confirm>      
             </Card>
         );
     }
